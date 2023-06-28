@@ -10,7 +10,7 @@ fn main() {
         N: usize,
         p: [usize; N],
     }
-    let M = N * 100;
+    let M = 10_000;
     let mut DP = vec![vec![false; M+1]; N+1];
     DP[0][0] = true;
     for i in 0..N {
@@ -21,5 +21,5 @@ fn main() {
             }
         }
     }
-    println!("{}", DP[N].iter().filter(|&x| *x == true).count());
+    println!("{}", DP[N].iter().filter(|&x| *x).count());
 }
