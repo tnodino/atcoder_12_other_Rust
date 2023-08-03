@@ -1,0 +1,33 @@
+// https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_cp
+
+use proconio::input;
+use proconio::fastout;
+use std::cmp::min;
+
+#[fastout]
+#[allow(non_snake_case)]
+fn main() {
+    input! {
+        N: usize,
+        h: [isize; N],
+    }
+    let mut DP = vec![0; N];
+    DP[1] = (h[1] - h[0]).abs();
+    for i in 2..N {
+        DP[i] = min(DP[i-1] + (h[i]-h[i-1]).abs(), DP[i-2] + (h[i]-h[i-2]).abs());
+    }
+    let mut ans = vec![N];
+    let mut idx = N - 1;
+    while idx > 0 {
+        if DP[idx-1] + (h[idx] - h[idx-1]).abs() == DP[idx] {
+            ans.push(idx);
+            idx -= 1;
+        }
+        else {
+            ans.push(idx-1);
+            idx -= 2;
+        }
+    }
+    println!("{}", ans.len());
+    println!("{}", ans.iter().rev().map(|&x| x.to_string()).collect::<Vec<String>>().join(" "));
+}
