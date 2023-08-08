@@ -11,9 +11,9 @@ fn main() {
         c: char,
     }
     let N = S.len();
-    let S = S.chars().rev().collect::<Vec<char>>();
+    let S = S.chars().collect::<Vec<char>>();
     let mut T = Vec::new();
-    for i in (0..N).rev() {
+    for i in 0..N {
         if S[i] == c {
             T.push(c);
         }
