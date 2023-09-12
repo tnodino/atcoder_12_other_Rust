@@ -7,20 +7,23 @@ use proconio::fastout;
 #[allow(non_snake_case)]
 fn main() {
     input! {
-        N: usize,
-        M: usize,
-        X: isize,
-        Y: isize,
+        (N, M, X, Y): (usize, usize, isize, isize),
         x: [isize; N],
         y: [isize; M],
     }
-    let ma = *x.iter().max().unwrap();
-    let mi = *y.iter().min().unwrap();
-    for z in X+1..=Y {
-        if ma < z && z <= mi {
-            println!("No War");
-            return;
+    'outer: for z in X+1..=Y {
+        for i in 0..N {
+            if x[i] >= z {
+                continue 'outer;
+            }
         }
+        for i in 0..M {
+            if y[i] < z {
+                continue 'outer;
+            }
+        }
+        println!("No War");
+        return;
     }
     println!("War");
 }

@@ -7,14 +7,9 @@ use proconio::fastout;
 #[allow(non_snake_case)]
 fn main() {
     input! {
-        A: usize,
-        B: usize,
-        C: usize,
-        D: usize,
-        E: usize,
-        F: usize,
+        (A, B, C, D, E, F): (usize, usize, usize, usize, usize, usize),
     }
-    let mut arr = [A, B, C, D, E, F];
-    arr.sort_by(|a, b| b.cmp(a));
-    println!("{}", arr[2]);
+    let mut vec = vec![A, B, C, D, E, F];
+    vec.sort();
+    println!("{}", vec[3]);
 }

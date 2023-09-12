@@ -7,8 +7,7 @@ use proconio::fastout;
 #[allow(non_snake_case)]
 fn main() {
     input! {
-        A: isize,
-        B: isize,
+        (A, B): (isize, isize),
     }
     println!("{}", A.abs() + (A - B).abs() + B.abs());
 }
