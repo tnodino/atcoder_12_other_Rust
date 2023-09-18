@@ -7,23 +7,22 @@ use proconio::fastout;
 #[allow(non_snake_case)]
 fn main() {
     input! {
-        H: usize,
-        W: usize,
+        (H, W): (usize, usize),
         A: [[usize; W]; H],
     }
-    let mut h = vec![0; H];
-    let mut w = vec![0; W];
+    let mut row = vec![0; H];
+    let mut column = vec![0; W];
     for i in 0..H {
         for j in 0..W {
-            h[i] += A[i][j];
-            w[j] += A[i][j];
+            row[i] += A[i][j];
+            column[j] += A[i][j];
         }
     }
-    let mut B = vec![vec![0; W]; H];
     for i in 0..H {
+        let mut ans = vec![0; W];
         for j in 0..W {
-            B[i][j] = h[i] + w[j] - A[i][j];
+            ans[j] = row[i] + column[j] - A[i][j];
         }
-        println!("{}", B[i].iter().map(|&x| x.to_string()).collect::<Vec<String>>().join(" "));
+        println!("{}", ans.iter().map(|&x| x.to_string()).collect::<Vec<String>>().join(" "));
     }
 }
