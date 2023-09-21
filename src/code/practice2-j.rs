@@ -8,13 +8,12 @@ use ac_library::{Segtree, Max};
 #[allow(non_snake_case)]
 fn main() {
     input! {
-        N: usize,
-        Q: usize,
+        (N, Q): (usize, usize),
         A: [isize; N],
     }
-    let mut Seg = Segtree::<Max<isize>>::new(N+1);
-    for i in 1..=N {
-        Seg.set(i, A[i-1]);
+    let mut Seg = Segtree::<Max<isize>>::new(N + 1);
+    for i in 0..N {
+        Seg.set(i + 1, A[i]);
     }
     for _ in 0..Q {
         input! {
@@ -23,24 +22,21 @@ fn main() {
         match T {
             1 => {
                 input! {
-                    X: usize,
-                    V: isize,
+                    (X, V): (usize, isize),
                 }
                 Seg.set(X, V);
             },
             2 => {
                 input! {
-                    L: usize,
-                    R: usize,
+                    (L, R): (usize, usize),
                 }
                 println!("{}", Seg.prod(L..=R));
             },
             3 => {
                 input! {
-                    X: usize,
-                    V: isize,
+                    (X, V): (usize, isize),
                 }
-                println!("{}", Seg.max_right(X, |a| a < &V));
+                println!("{}", Seg.max_right(X, |x| x < &V));
             },
             _ => {},
         }
